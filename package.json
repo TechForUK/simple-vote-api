@@ -13,5 +13,8 @@
     "express": "^4.16.4",
     "pdf-lib": "^0.6.1",
     "sendgrid": "^5.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
   }
 }
