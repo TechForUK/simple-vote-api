@@ -1,0 +1,14 @@
+{
+  "name": "simple-vote-express",
+  "version": "1.0.0",
+  "description": "auto fill voter rgistration form",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
