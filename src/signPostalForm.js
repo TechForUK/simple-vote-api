@@ -90,7 +90,7 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText("X"), {
+    drawText(courierFont.encodeText('X'), {
       x: 211,
       y: 453,
       font: COURIER_FONT,
@@ -104,7 +104,7 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText("X"), {
+    drawText(courierFont.encodeText('X'), {
       x: 50,
       y: 245,
       font: COURIER_FONT,
@@ -116,7 +116,7 @@ function signBasicForm (userData) {
   existingPage1.addContentStreams(pdfDoc.register(newContentStream1));
 
   const newContentStream2 = pdfDoc.createContentStream(
-    drawText(courierFont.encodeText("X"), {
+    drawText(courierFont.encodeText('X'), {
       x: 59,
       y: 781,
       font: COURIER_FONT,
@@ -179,7 +179,7 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText("X"), {
+    drawText(courierFont.encodeText('X'), {
       x: 52,
       y: 333,
       font: COURIER_FONT,

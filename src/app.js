@@ -31,7 +31,7 @@ app.post('/register', (req, res) => {
       pdfDocuments.push(signBasicForm(userData));
       break;
     case 'eu_citizen_in_uk':
-      //pdfDocuments.push(signBasicForm(userData));
+      pdfDocuments.push(signBasicForm(userData));
       pdfDocuments.push(signEuForm(userData));
       break;
         // case 'uk_citizen_abroad':
@@ -42,7 +42,7 @@ app.post('/register', (req, res) => {
       pdfDocuments.push(signPostalForm(userData));
     }
     //for testing we are setting toEmail to fromEmail
-    sendEmail(pdfDocuments,userData.fromEmail, userData.fromEmail, userData.firstName + ' ' + userData.surname);
+    //sendEmail(pdfDocuments,userData.fromEmail, userData.fromEmail, userData.firstName + ' ' + userData.surname);
 
   }
   res.sendStatus(200);
