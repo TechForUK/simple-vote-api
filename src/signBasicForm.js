@@ -185,7 +185,71 @@ function signBasicForm (userData) {
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
-    })
+    }),
+    drawText(courierFont.encodeText(userData.nin[0]), {
+      x: 56,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.nin[1]), {
+      x: 72,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.nin[2]), {
+      x: 99,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.nin[3]), {
+      x: 113,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.nin[4]), {
+      x: 141,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.nin[5]), {
+      x: 155,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.nin[6]), {
+      x: 184,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.nin[7]), {
+      x: 198,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.nin[8]), {
+      x: 229,
+      y: 641,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+
   );
 
   existingPage2.addContentStreams(pdfDoc.register(newContentStream2));
