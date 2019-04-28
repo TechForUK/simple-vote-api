@@ -115,6 +115,12 @@ function signBasicForm (userData) {
 
   existingPage1.addContentStreams(pdfDoc.register(newContentStream1));
 
+  //const ninNoSpaces = userData.nin.replace(/ /g,'');
+  const ninNoSpaces = userData.nin.replace(/\s+/g, '');
+  console.log(ninNoSpaces);
+
+  console.log(ninNoSpaces[0],ninNoSpaces[1],ninNoSpaces[2],ninNoSpaces[3],ninNoSpaces[4],ninNoSpaces[5],ninNoSpaces[6],ninNoSpaces[7],ninNoSpaces[8]);
+
   const newContentStream2 = pdfDoc.createContentStream(
     drawText(courierFont.encodeText('X'), {
       x: 59,
@@ -186,69 +192,69 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.nin[0]), {
-      x: 56,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[1]), {
-      x: 72,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[2]), {
-      x: 99,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[3]), {
-      x: 113,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[4]), {
-      x: 141,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[5]), {
-      x: 155,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[6]), {
-      x: 184,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[7]), {
-      x: 198,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[8]), {
-      x: 229,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
+    // drawText(courierFont.encodeText(ninNoSpaces[0]), {
+    //   x: 56,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
+    // drawText(courierFont.encodeText(ninNoSpaces[1]), {
+    //   x: 72,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
+    // drawText(courierFont.encodeText(ninNoSpaces[2]), {
+    //   x: 99,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
+    // drawText(courierFont.encodeText(ninNoSpaces[3]), {
+    //   x: 113,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
+    // drawText(courierFont.encodeText(ninNoSpaces[4]), {
+    //   x: 141,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
+    // drawText(courierFont.encodeText(ninNoSpaces[5]), {
+    //   x: 155,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
+    // drawText(courierFont.encodeText(ninNoSpaces[6]), {
+    //   x: 184,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
+    // drawText(courierFont.encodeText(ninNoSpaces[7]), {
+    //   x: 198,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
+    // drawText(courierFont.encodeText(ninNoSpaces[8]), {
+    //   x: 229,
+    //   y: 641,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
 
   );
 
