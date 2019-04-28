@@ -17,7 +17,7 @@ app.post('/register', (req, res) => {
   const basicFormPdf = signBasicForm(userData);
   const postalFormPdf = signPostalForm(userData);
   const euFormPdf = signEuForm(userData);
-  sendEmail([basicFormPdf, postalFormPdf, euFormPdf]);
+  sendEmail([basicFormPdf, postalFormPdf, euFormPdf],toEmail, fromEmail);
   res.sendStatus(200);
 });
 

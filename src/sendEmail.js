@@ -1,4 +1,4 @@
-function sendEmail(files) {
+function sendEmail(files, toEmail, from Email) {
   console.log(files);
   // const sgMail = require('@sendgrid/mail');
   // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
