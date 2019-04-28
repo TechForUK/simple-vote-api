@@ -92,13 +92,6 @@ function signPostalPdf(userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.telephone), {
-      x: 50,
-      y: 440,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
     drawText(courierFont.encodeText(userData.email), {
       x: 50,
       y: 397,
