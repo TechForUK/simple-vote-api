@@ -14,18 +14,27 @@ app.get('/', (req, res) => res.send('Hello World!'));
 
 app.post('/register', (req, res) => {
   const { userData } = req.body;
-  //userData.
-  const basicFormPdf = signBasicForm(userData);
-  const postalFormPdf = signPostalForm(userData);
-  const euFormPdf = signEuForm(userData);
-  sendEmail([basicFormPdf,postalFormPdf, euFormPdf],userData.toEmail, userData.fromEmail, userData.firstName + ' ' + userData.surname);
+  const pdfDocuments = [];
+
+  switch(userData.userType) {
+    case 'uk_citizen_in_uk':
+      pdfDocuments.push(signBasicForm(userData));
+      break;
+    case 'eu_citizen_in_uk':
+      pdfDocuments.push(signBasicForm(userData));
+      pdfDocuments.push(signEuForm(userData));
+      break;
+    // case 'uk_citizen_abroad':
+    //   pdfDocuments.push(signBasicForm(userData));
+    //   break;
+  }
+  if (userData.reqiresPostalForm){
+      pdfDocuments.push(signPostalForm(userData));
+  }
+
+  sendEmail(pdfDocuments,userData.toEmail, userData.fromEmail, userData.firstName + ' ' + userData.surname);
   res.sendStatus(200);
 });
 
-// `uk_citizen_in_uk`
-// `eu_citizen_in_uk`
-// `uk_citizen_abroad`
-
-//PLUS POSTAL FORM
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
