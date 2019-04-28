@@ -1,4 +1,5 @@
 const fs = require('fs');
+const dataUriToBuffer = require('data-uri-to-buffer');
 const {
   PDFDocumentFactory,
   PDFDocumentWriter,
@@ -8,10 +9,13 @@ const {
 } = require('pdf-lib');
 //const attachments = [];
 
+
+
 function signPostalPdf(userData) {
+
   const assets = {
     ubuntuFontBytes: fs.readFileSync('../assets/ubuntu-fonts/Ubuntu-R.ttf'),
-    testSignaturePngBytes: fs.readFileSync('../assets/signature-test.png'),
+    testSignaturePngBytes: dataUriToBuffer(userData.signature),
     euCitzienEnglishPdfBytes: fs.readFileSync('../assets/postal-form.pdf'),
   };
 

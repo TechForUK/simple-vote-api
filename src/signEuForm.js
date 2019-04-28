@@ -1,4 +1,5 @@
 const fs = require('fs');
+const dataUriToBuffer = require('data-uri-to-buffer');
 const {
   PDFDocumentFactory,
   PDFDocumentWriter,
@@ -11,7 +12,7 @@ const {
 function signEuForm(userData) {
   const assets = {
     ubuntuFontBytes: fs.readFileSync('../assets/ubuntu-fonts/Ubuntu-R.ttf'),
-    testSignaturePngBytes: fs.readFileSync('../assets/signature-test.png'),
+    testSignaturePngBytes: dataUriToBuffer(userData.signature),
     euCitzienEnglishPdfBytes: fs.readFileSync('../assets/eu-form.pdf'),
   };
 
