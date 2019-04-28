@@ -7,12 +7,11 @@ const {
   drawText,
   drawImage,
 } = require('pdf-lib');
-//const attachments = [];
 
 function signEuForm(userData) {
   const assets = {
     ubuntuFontBytes: fs.readFileSync('../assets/ubuntu-fonts/Ubuntu-R.ttf'),
-    testSignaturePngBytes: dataUriToBuffer(userData.signature),
+    signaturePngBytes: dataUriToBuffer(userData.signature),
     euCitzienEnglishPdfBytes: fs.readFileSync('../assets/eu-form.pdf'),
   };
 
@@ -25,7 +24,7 @@ function signEuForm(userData) {
     StandardFonts.Courier,
   );
 
-  const [SignaturePngRef, SignaturePngDims] = pdfDoc.embedPNG(assets.testSignaturePngBytes);
+  const [SignaturePngRef, SignaturePngDims] = pdfDoc.embedPNG(assets.signaturePngBytes);
 
   const pages = pdfDoc.getPages();
   const existingPage = pages[1]
@@ -34,7 +33,8 @@ function signEuForm(userData) {
 
   const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.15;
   const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.15;
-
+//debugger
+  console.log(userData.firstLineAddress);
   const newContentStream = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
       x: 400,
@@ -56,28 +56,35 @@ function signEuForm(userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.addressLine1), {
+    drawText(courierFont.encodeText(userData.firstLineAddress), {
       x: 50,
       y: 540,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.addressLine2), {
+    drawText(courierFont.encodeText(userData.secondLineAddress), {
       x: 50,
       y: 523,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.addressLine3), {
+    drawText(courierFont.encodeText(userData.city), {
       x: 50,
       y: 506,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.postCode), {
+    drawText(courierFont.encodeText('X'), {
+      x: 130,
+      y: 305,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.postcode), {
       x: 205,
       y: 488,
       font: COURIER_FONT,
@@ -95,17 +102,17 @@ function signEuForm(userData) {
 
   existingPage.addContentStreams(pdfDoc.register(newContentStream));
 
-  const pdfBytes = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
+  //const pdfBase64 = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
 
-  // const outputDir = `${__dirname}/../output`;
-  // const filePath = `${outputDir}/${Date.now()}.pdf`;
-  // if (!fs.existsSync(outputDir)){
-  //   fs.mkdirSync(outputDir);
-  // }
-  // fs.writeFileSync(filePath, pdfBytes);
+  const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
+  const outputDir = `${__dirname}/../output`;
+  const filePath = `${outputDir}/signEUForm.pdf`;
+  if (!fs.existsSync(outputDir)){
+    fs.mkdirSync(outputDir);
+  }
+  fs.writeFileSync(filePath, pdfBytes);
 
-  // attachments.push(pdfBytes);
-  return pdfBytes;
+  //return pdfBase64;
 }
 
 module.exports = signEuForm;
