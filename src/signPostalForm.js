@@ -6,13 +6,13 @@ const {
   drawText,
   drawImage,
 } = require('pdf-lib');
-const attachments = [];
+//const attachments = [];
 
 function signPostalPdf(userData) {
   const assets = {
-    ubuntuFontBytes: fs.readFileSync('./assets/ubuntu-fonts/Ubuntu-R.ttf'),
-    testSignaturePngBytes: fs.readFileSync('./assets/signature-test.png'),
-    euCitzienEnglishPdfBytes: fs.readFileSync('./assets/postal-form.pdf'),
+    ubuntuFontBytes: fs.readFileSync('../assets/ubuntu-fonts/Ubuntu-R.ttf'),
+    testSignaturePngBytes: fs.readFileSync('../assets/signature-test.png'),
+    euCitzienEnglishPdfBytes: fs.readFileSync('../assets/postal-form.pdf'),
   };
 
   const pdfDoc = PDFDocumentFactory.load(assets.euCitzienEnglishPdfBytes);
@@ -95,17 +95,17 @@ function signPostalPdf(userData) {
 
   existingPage.addContentStreams(pdfDoc.register(newContentStream));
 
-  const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
+  const pdfBytes = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
 
-  const outputDir = `${__dirname}/../output`;
-  const filePath = `${outputDir}/${Date.now()}.pdf`;
-  if (!fs.existsSync(outputDir)){
-    fs.mkdirSync(outputDir);
-  }
-  fs.writeFileSync(filePath, pdfBytes);
+  // const outputDir = `${__dirname}/../output`;
+  // const filePath = `${outputDir}/${Date.now()}.pdf`;
+  // if (!fs.existsSync(outputDir)){
+  //   fs.mkdirSync(outputDir);
+  // }
+  //fs.writeFileSync(filePath, pdfBytes);
 
-  attachments.push(pdfBytes);
-  return filePath;
+  //attachments.push(pdfBytes);
+  return pdfBytes;
 }
 
 module.exports = signPostalPdf;

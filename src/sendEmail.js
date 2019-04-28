@@ -1,20 +1,46 @@
-function sendEmail(files, toEmail, from Email) {
-  console.log(files);
-  // const sgMail = require('@sendgrid/mail');
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  // const msg = {
-  //   to: 'recipient@example.org',
-  //   from: 'sender@example.org',
-  //   subject: 'Hello attachment',
-  //   html: '<p>Here’s an attachment for you!</p>',
-  //   attachments: [{
-  //     content: 'Some base 64 encoded attachment content',
-  //     filename: 'some-attachment.txt',
-  //     type: 'plain/text',
-  //     disposition: 'attachment',
-  //     contentId: 'mytext'
-  //   }, ],
-  // };
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+//sendEmail([pdfData, pdfData],'phil.mohr@gmail.com', 'philmohr@gmail.com', 'Tom Miller');
+
+
+function sendEmail(files, toEmail, fromEmail, name) {
+  //console.log(files);
+
+   var attach = [];
+   var arrayLength = files.length;
+   for (var i = 0; i < arrayLength; i++) {
+      attach.push({
+      content : files[i],
+      filename : 'file' + (i + 1) + '.pdf'
+    });
+    }
+
+  //console.log( attach );
+
+  const msg = {
+  to: toEmail,
+  from: fromEmail,
+  subject: 'Please register me for voting in the EU elections',
+  text: 'Hello,\n\nPlease register me for Voting. See attached.\n\nBest regards,\n\n'+name,
+  //html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+  attachments: attach,
+};
+sgMail.send(msg)
+.then(function(output){
+  console.log(output);
+}).catch(function(e){
+  console.log(e.message);
+});
+
+
 }
 
 module.exports = sendEmail;
+
+
+
+
+
+
+
