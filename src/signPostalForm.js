@@ -39,6 +39,10 @@ function signPostalPdf(userData) {
   const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.15;
   const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.15;
 
+
+
+  //2019-04-03
+
   const newContentStream = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
       x: 400,
@@ -60,35 +64,98 @@ function signPostalPdf(userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.addressLine1), {
+    drawText(courierFont.encodeText(userData.firstLineAddress), {
       x: 50,
       y: 540,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.addressLine2), {
+    drawText(courierFont.encodeText(userData.secondLineAddress), {
       x: 50,
       y: 521,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.addressLine3), {
+    drawText(courierFont.encodeText(userData.city), {
       x: 50,
       y: 503,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.postCode), {
+    drawText(courierFont.encodeText(userData.postcode), {
       x: 205,
       y: 480,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.citizenCountry), {
+    drawText(courierFont.encodeText(userData.telephone), {
+      x: 50,
+      y: 440,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.email), {
+      x: 50,
+      y: 397,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.dateOfBirth[0]), {
+      x: 335,
+      y: 310,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.dateOfBirth[1]), {
+      x: 415,
+      y: 677,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.dateOfBirth[2]), {
+      x: 415,
+      y: 677,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.dateOfBirth[3]), {
+      x: 415,
+      y: 677,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.dateOfBirth[5]), {
+      x: 415,
+      y: 677,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.dateOfBirth[6]), {
+      x: 415,
+      y: 677,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.dateOfBirth[8]), {
+      x: 415,
+      y: 677,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.dateOfBirth[9]), {
       x: 415,
       y: 677,
       font: COURIER_FONT,
@@ -99,17 +166,17 @@ function signPostalPdf(userData) {
 
   existingPage.addContentStreams(pdfDoc.register(newContentStream));
 
-  const pdfBytes = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
+  //const pdfBase64 = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
 
-  // const outputDir = `${__dirname}/../output`;
-  // const filePath = `${outputDir}/${Date.now()}.pdf`;
-  // if (!fs.existsSync(outputDir)){
-  //   fs.mkdirSync(outputDir);
-  // }
-  //fs.writeFileSync(filePath, pdfBytes);
+  const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
+  const outputDir = `${__dirname}/../output`;
+  const filePath = `${outputDir}/signPostalForm.pdf`;
+  if (!fs.existsSync(outputDir)){
+    fs.mkdirSync(outputDir);
+  }
+  fs.writeFileSync(filePath, pdfBytes);
 
-  //attachments.push(pdfBytes);
-  return pdfBytes;
+  //return pdfBase64;
 }
 
 module.exports = signPostalPdf;
