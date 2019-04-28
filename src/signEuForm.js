@@ -102,17 +102,17 @@ function signEuForm(userData) {
 
   existingPage.addContentStreams(pdfDoc.register(newContentStream));
 
-  //const pdfBase64 = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
+  const pdfBase64 = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
 
-  const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
-  const outputDir = `${__dirname}/../output`;
-  const filePath = `${outputDir}/signEUForm.pdf`;
-  if (!fs.existsSync(outputDir)){
-    fs.mkdirSync(outputDir);
-  }
-  fs.writeFileSync(filePath, pdfBytes);
+  // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
+  // const outputDir = `${__dirname}/../output`;
+  // const filePath = `${outputDir}/signEUForm.pdf`;
+  // if (!fs.existsSync(outputDir)){
+  //   fs.mkdirSync(outputDir);
+  // }
+  // fs.writeFileSync(filePath, pdfBytes);
 
-  //return pdfBase64;
+  return pdfBase64;
 }
 
 module.exports = signEuForm;
