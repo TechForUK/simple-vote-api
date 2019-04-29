@@ -97,7 +97,7 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.citizenCountry), {
+    drawText(courierFont.encodeText(userData.nationality), {
       x: 80,
       y: 322,
       font: COURIER_FONT,
@@ -254,17 +254,17 @@ function signBasicForm (userData) {
 
   existingPage2.addContentStreams(pdfDoc.register(newContentStream2));
 
-  //const pdfBase64 = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
 
-  const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
-  const outputDir = `${__dirname}/../output`;
-  const filePath = `${outputDir}/signBasicForm.pdf`;
-  if (!fs.existsSync(outputDir)){
-    fs.mkdirSync(outputDir);
-  }
-  fs.writeFileSync(filePath, pdfBytes);
+  // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
+  // const outputDir = `${__dirname}/../output`;
+  // const filePath = `${outputDir}/signBasicForm.pdf`;
+  // if (!fs.existsSync(outputDir)){
+  //   fs.mkdirSync(outputDir);
+  // }
+  // fs.writeFileSync(filePath, pdfBytes);
 
-  //return pdfBase64;
+  const pdfBase64 = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
+  return pdfBase64;
 }
 
 module.exports = signBasicForm;

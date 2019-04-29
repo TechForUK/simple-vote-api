@@ -91,7 +91,7 @@ function signEuForm(userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.citizenCountry), {
+    drawText(courierFont.encodeText(userData.citizenOf), {
       x: 415,
       y: 677,
       font: COURIER_FONT,

@@ -42,7 +42,7 @@ app.post('/register', (req, res) => {
       pdfDocuments.push(signPostalForm(userData));
     }
     //for testing we are setting toEmail to fromEmail
-    //sendEmail(pdfDocuments,userData.fromEmail, userData.fromEmail, userData.firstName + ' ' + userData.surname);
+    sendEmail(pdfDocuments,userData.email, userData.email, userData.firstName + ' ' + userData.surname);
 
   }
   res.sendStatus(200);
