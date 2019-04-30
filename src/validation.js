@@ -44,7 +44,7 @@ function validation(userData){
     }
 
     if(validDate(userData.dateOfBirth) == false){
-      console.log('dateOfBirth validation failed');
+      console.log('dateOfBirth validation failed ' + userData.dateOfBirth);
       return false;
     }
 

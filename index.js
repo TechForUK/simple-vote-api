@@ -27,5 +27,9 @@ exports.fillAndSignForms = (req, res) => {
     sendEmail(pdfDocuments,userData.email, userData.email, userData.firstName + ' ' + userData.surname);
 
   }
+  else {
+    console.log('validation of user Data failed');
+  }
+
   res.sendStatus(200);
 };

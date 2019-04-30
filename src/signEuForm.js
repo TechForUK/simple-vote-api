@@ -31,20 +31,18 @@ function signEuForm(userData) {
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.15;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.15;
-//debugger
-  console.log(userData.firstLineAddress);
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.05;
+  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.05;
   const newContentStream = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
-      x: 400,
-      y: 50,
+      x: 350,
+      y: 105,
       width: SIGNATURE_PNG_WIDTH,
       height: SIGNATURE_PNG_HEIGHT,
     }),
     drawText(courierFont.encodeText(userData.surname), {
       x: 50,
-      y: 677,
+      y: 672,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
@@ -78,6 +76,13 @@ function signEuForm(userData) {
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText('X'), {
+      x: 212,
+      y: 450,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText('X'), {
       x: 130,
       y: 305,
       font: COURIER_FONT,
@@ -98,20 +103,85 @@ function signEuForm(userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
+    drawText(courierFont.encodeText(userData.homeCountryConstituency), {
+      x: 330,
+      y: 340,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[0]), {
+      x: 475,
+      y: 60,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[1]), {
+      x: 490,
+      y: 60,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[2]), {
+      x: 505,
+      y: 60,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[3]), {
+      x: 520,
+      y: 60,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[5]), {
+      x: 440,
+      y: 60,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[6]), {
+      x: 455,
+      y: 60,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[8]), {
+      x: 403,
+      y: 60,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[9]), {
+      x: 418,
+      y: 60,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
   );
 
-  existingPage.addContentStreams(pdfDoc.register(newContentStream));
 
-  const pdfBase64 = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
+  
+  existingPage.addContentStreams(pdfDoc.register(newContentStream));
 
   // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
   // const outputDir = `${__dirname}/../output`;
   // const filePath = `${outputDir}/signEUForm.pdf`;
+  // console.log('filePath: ' + filePath);
   // if (!fs.existsSync(outputDir)){
   //   fs.mkdirSync(outputDir);
   // }
   // fs.writeFileSync(filePath, pdfBytes);
 
+  const pdfBase64 = Buffer.from(PDFDocumentWriter.saveToBytes(pdfDoc)).toString('base64');
   return pdfBase64;
 }
 

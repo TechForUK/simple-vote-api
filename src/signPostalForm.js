@@ -7,13 +7,12 @@ const {
   drawText,
   drawImage,
 } = require('pdf-lib');
-//const attachments = [];
 
 function signBasicForm (userData) {
   const assets = {
     ubuntuFontBytes: fs.readFileSync('./assets/ubuntu-fonts/Ubuntu-R.ttf'),
     testSignaturePngBytes: dataUriToBuffer(userData.signature),
-    euCitzienEnglishPdfBytes: fs.readFileSync('./assets/basic-form.pdf'),
+    euCitzienEnglishPdfBytes: fs.readFileSync('./assets/postal-form.pdf'),
   };
 
   const pdfDoc = PDFDocumentFactory.load(assets.euCitzienEnglishPdfBytes);
@@ -27,96 +26,98 @@ function signBasicForm (userData) {
 
 
   const [SignaturePngRef, SignaturePngDims] = pdfDoc.embedPNG(assets.testSignaturePngBytes);
-
   const pages = pdfDoc.getPages();
 
-  const existingPage1 = pages[0]
-    .addFontDictionary(COURIER_FONT, courierRef)
-    .addImageObject(SIGNATURE_PNG, SignaturePngRef);
+  var postalVoteOptionIndefintiely = '';
+  var postalVoteOptionDate = '';
+  var postalVoteOptionPeriod = '';
+  //setup a few tick boxes 'X'
+  if (userData.postalVoteOption === 'indefintiely'){
+    postalVoteOptionIndefintiely = 'X';
+  }
+  else if(userData.postalVoteOption === 'date'){
+    postalVoteOptionDate = 'X';
+  }
+  else if(userData.postalVoteOption === 'period'){
+    postalVoteOptionPeriod = 'X';
+  }
+
+
+  
+
+
 
   const existingPage2 = pages[1]
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.15;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.15;
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.1;
+  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.1;
 
-  const newContentStream1 = pdfDoc.createContentStream(
+  const newContentStream = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
-      x: 400,
-      y: 50,
+      x: 332,
+      y: 172,
       width: SIGNATURE_PNG_WIDTH,
       height: SIGNATURE_PNG_HEIGHT,
     }),
     drawText(courierFont.encodeText(userData.surname), {
-      x: 180,
-      y: 533,
+      x: 55,
+      y: 625,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.firstName), {
-      x: 180,
-      y: 559,
+      x: 55,
+      y: 585,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.firstLineAddress), {
-      x: 180,
-      y: 507,
+      x: 55,
+      y: 542,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.secondLineAddress), {
-      x: 180,
-      y: 488,
+      x: 55,
+      y: 521,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.city), {
-      x: 180,
-      y: 470,
+      x: 55,
+      y: 501,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.postcode), {
-      x: 405,
-      y: 470,
+      x: 197,
+      y: 481,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText('X'), {
-      x: 211,
-      y: 453,
+    drawText(courierFont.encodeText(postalVoteOptionIndefintiely), {
+      x: 48,
+      y: 258,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.nationality), {
-      x: 80,
-      y: 322,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText('X'), {
+    drawText(courierFont.encodeText(postalVoteOptionDate), {
       x: 50,
       y: 245,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
-    })
-  );
-
-  existingPage1.addContentStreams(pdfDoc.register(newContentStream1));
-
-  const newContentStream2 = pdfDoc.createContentStream(
-    drawText(courierFont.encodeText('X'), {
+    }),
+    drawText(courierFont.encodeText(postalVoteOptionPeriod), {
       x: 59,
       y: 781,
       font: COURIER_FONT,
@@ -124,127 +125,113 @@ function signBasicForm (userData) {
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.dateOfBirth[0]), {
-      x: 138,
-      y: 728,
+      x: 457,
+      y: 311,
       font: COURIER_FONT,
-      size: 12,
+      size: 16,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.dateOfBirth[1]), {
-      x: 152,
-      y: 728,
+      x: 481,
+      y: 311,
       font: COURIER_FONT,
-      size: 12,
+      size: 16,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.dateOfBirth[2]), {
-      x: 166,
-      y: 728,
+      x: 506,
+      y: 311,
       font: COURIER_FONT,
-      size: 12,
+      size: 16,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.dateOfBirth[3]), {
-      x: 180,
-      y: 728,
+      x: 530,
+      y: 311,
       font: COURIER_FONT,
-      size: 12,
+      size: 16,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.dateOfBirth[5]), {
-      x: 53,
-      y: 728,
+      x: 393,
+      y: 311,
       font: COURIER_FONT,
-      size: 12,
+      size: 16,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.dateOfBirth[6]), {
-      x: 67,
-      y: 728,
+      x: 418,
+      y: 311,
       font: COURIER_FONT,
-      size: 12,
+      size: 16,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.dateOfBirth[8]), {
-      x: 96,
-      y: 728,
+      x: 332,
+      y: 311,
       font: COURIER_FONT,
-      size: 12,
+      size: 16,
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.dateOfBirth[9]), {
-      x: 110,
-      y: 728,
+      x: 358,
+      y: 311,
+      font: COURIER_FONT,
+      size: 16,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentDate[0]), {
+      x: 473,
+      y: 54,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText('X'), {
-      x: 52,
-      y: 333,
+    drawText(courierFont.encodeText(userData.currentDate[1]), {
+      x: 488,
+      y: 54,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.nin[0]), {
-      x: 56,
-      y: 641,
+    drawText(courierFont.encodeText(userData.currentDate[2]), {
+      x: 503,
+      y: 54,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.nin[1]), {
-      x: 72,
-      y: 641,
+    drawText(courierFont.encodeText(userData.currentDate[3]), {
+      x: 518,
+      y: 54,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.nin[2]), {
-      x: 99,
-      y: 641,
+    drawText(courierFont.encodeText(userData.currentDate[5]), {
+      x: 437,
+      y: 54,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.nin[3]), {
-      x: 113,
-      y: 641,
+    drawText(courierFont.encodeText(userData.currentDate[6]), {
+      x: 452,
+      y: 54,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.nin[4]), {
-      x: 141,
-      y: 641,
+    drawText(courierFont.encodeText(userData.currentDate[8]), {
+      x: 399,
+      y: 54,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.nin[5]), {
-      x: 155,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[6]), {
-      x: 184,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[7]), {
-      x: 198,
-      y: 641,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(userData.nin[8]), {
-      x: 229,
-      y: 641,
+    drawText(courierFont.encodeText(userData.currentDate[9]), {
+      x: 415,
+      y: 54,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
@@ -252,12 +239,12 @@ function signBasicForm (userData) {
 
   );
 
-  existingPage2.addContentStreams(pdfDoc.register(newContentStream2));
+  existingPage2.addContentStreams(pdfDoc.register(newContentStream));
 
 
   // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
   // const outputDir = `${__dirname}/../output`;
-  // const filePath = `${outputDir}/signBasicForm.pdf`;
+  // const filePath = `${outputDir}/signPostalForm.pdf`;
   // if (!fs.existsSync(outputDir)){
   //   fs.mkdirSync(outputDir);
   // }
