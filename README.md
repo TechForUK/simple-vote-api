@@ -1,9 +1,17 @@
 # Simple Vote API
 A service that given user data fills out relevant forms and emails them to their local electoral authority.
 
-# readiness checklist
+## Prerequisites
+You need to have the [Cloud Functions Node.js Emulator](https://cloud.google.com/functions/docs/emulator) to run this project. You can install it with:
+`npm install -g @google-cloud/functions-emulator`
 
-see https://github.com/TechForUK/simple-vote-api-2/issues/2
+## Commands
 
-### `node src/app.js`
-To run the server.
+### `npm install`
+To install all dependencies.
+
+### `npm start`
+To start the service.
+
+### `npm deploy`
+To deploy the service.
