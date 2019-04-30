@@ -10,9 +10,9 @@ const {
 
 function signEuForm(userData) {
   const assets = {
-    ubuntuFontBytes: fs.readFileSync('../assets/ubuntu-fonts/Ubuntu-R.ttf'),
+    ubuntuFontBytes: fs.readFileSync('./assets/ubuntu-fonts/Ubuntu-R.ttf'),
     signaturePngBytes: dataUriToBuffer(userData.signature),
-    euCitzienEnglishPdfBytes: fs.readFileSync('../assets/eu-form.pdf'),
+    euCitzienEnglishPdfBytes: fs.readFileSync('./assets/eu-form.pdf'),
   };
 
   const pdfDoc = PDFDocumentFactory.load(assets.euCitzienEnglishPdfBytes);

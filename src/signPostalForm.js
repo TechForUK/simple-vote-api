@@ -11,9 +11,9 @@ const {
 
 function signBasicForm (userData) {
   const assets = {
-    ubuntuFontBytes: fs.readFileSync('../assets/ubuntu-fonts/Ubuntu-R.ttf'),
+    ubuntuFontBytes: fs.readFileSync('./assets/ubuntu-fonts/Ubuntu-R.ttf'),
     testSignaturePngBytes: dataUriToBuffer(userData.signature),
-    euCitzienEnglishPdfBytes: fs.readFileSync('../assets/basic-form.pdf'),
+    euCitzienEnglishPdfBytes: fs.readFileSync('./assets/basic-form.pdf'),
   };
 
   const pdfDoc = PDFDocumentFactory.load(assets.euCitzienEnglishPdfBytes);
