@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "functions deploy fillAndSignForms --env-vars-file .env.yaml --trigger-http",
-    "deploy": "gcloud functions deploy fillAndSignForms --env-vars-file .env.yaml --region europe-west1 --runtime nodejs10 --trigger-http"
+    "deploy": "gcloud functions deploy fillAndSignForms --trigger-http"
   },
   "author": "",
   "license": "ISC",
