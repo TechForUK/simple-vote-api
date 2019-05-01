@@ -38,8 +38,8 @@ function signBasicForm (userData) {
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.05;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.05;
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.09;
+  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.09;
 
   
   var movedHouseYes = '';
@@ -56,6 +56,16 @@ function signBasicForm (userData) {
     otherAddressYes = 'X';
     otherAddressNo = '';
   }
+
+
+  var registeredAsOverseasVoterYes = '';
+  var registeredAsOverseasVoterNo = 'X';
+  if (userData.registeredAsOverseasVoter){
+    registeredAsOverseasVoterYes = 'X';
+    registeredAsOverseasVoterNo = '';
+  }
+
+
 
   const newContentStream1 = pdfDoc.createContentStream(
     drawText(courierFont.encodeText(userData.surname), {
@@ -122,7 +132,7 @@ function signBasicForm (userData) {
       colorRgb: [0, 0, 0],
     }),
     drawText(courierFont.encodeText(userData.nationality), {
-      x: 80,
+      x: 55,
       y: 322,
       font: COURIER_FONT,
       size: 12,
@@ -170,7 +180,22 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
+    drawText(courierFont.encodeText(registeredAsOverseasVoterNo), {
+      x: 486,
+      y: 151,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(registeredAsOverseasVoterYes), {
+      x: 530,
+      y: 151,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
   );
+
 
   existingPage1.addContentStreams(pdfDoc.register(newContentStream1));
 
@@ -179,8 +204,8 @@ function signBasicForm (userData) {
 
   const newContentStream2 = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
-      x: 90,
-      y: 90,
+      x: 120,
+      y: 105,
       width: SIGNATURE_PNG_WIDTH,
       height: SIGNATURE_PNG_HEIGHT,
     }),
@@ -379,11 +404,18 @@ function signBasicForm (userData) {
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
-    })
-
+    }),
+    drawText(courierFont.encodeText(userData.previousName), {
+      x: 56,
+      y: 459,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
   );
 
   existingPage2.addContentStreams(pdfDoc.register(newContentStream2));
+
 
 
   // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);

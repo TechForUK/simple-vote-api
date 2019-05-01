@@ -29,23 +29,10 @@ function signBasicForm (userData) {
   const pages = pdfDoc.getPages();
 
   var postalVoteOptionIndefintiely = '';
-  var postalVoteOptionDate = '';
-  var postalVoteOptionPeriod = '';
-  //setup a few tick boxes 'X'
+
   if (userData.postalVoteOption === 'indefintiely'){
     postalVoteOptionIndefintiely = 'X';
   }
-  else if(userData.postalVoteOption === 'date'){
-    postalVoteOptionDate = 'X';
-  }
-  else if(userData.postalVoteOption === 'period'){
-    postalVoteOptionPeriod = 'X';
-  }
-
-
-  
-
-
 
   const existingPage2 = pages[1]
     .addFontDictionary(COURIER_FONT, courierRef)
@@ -103,23 +90,16 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
+    drawText(courierFont.encodeText(userData.email), {
+      x: 55,
+      y: 398,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
     drawText(courierFont.encodeText(postalVoteOptionIndefintiely), {
       x: 48,
       y: 258,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(postalVoteOptionDate), {
-      x: 50,
-      y: 245,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
-    drawText(courierFont.encodeText(postalVoteOptionPeriod), {
-      x: 59,
-      y: 781,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
@@ -240,6 +220,202 @@ function signBasicForm (userData) {
   );
 
   existingPage2.addContentStreams(pdfDoc.register(newContentStream));
+
+
+  if(userData.postalVoteOption === 'specificElection'){
+    const newContentStream2 = pdfDoc.createContentStream(
+      drawText(courierFont.encodeText('X'), {
+        x: 48,
+        y: 233,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteElectionDate[0]), {
+        x: 139,
+        y: 215,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteElectionDate[1]), {
+        x: 155,
+        y: 215,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteElectionDate[2]), {
+        x: 170,
+        y: 215,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteElectionDate[3]), {
+        x: 184,
+        y: 215,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteElectionDate[5]), {
+        x: 101,
+        y: 215,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteElectionDate[6]), {
+        x: 116,
+        y: 215,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteElectionDate[8]), {
+        x: 66,
+        y: 215,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteElectionDate[9]), {
+        x: 81,
+        y: 215,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+    );
+    existingPage2.addContentStreams(pdfDoc.register(newContentStream2));
+  }
+  else if(userData.postalVoteOption === 'timePeriod'){
+    const newContentStream2 = pdfDoc.createContentStream(
+      drawText(courierFont.encodeText('X'), {
+        x: 48,
+        y: 179,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteFrom[0]), {
+        x: 171,
+        y: 159,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteFrom[1]), {
+        x: 186,
+        y: 159,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteFrom[2]), {
+        x: 201,
+        y: 159,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteFrom[3]), {
+        x: 215,
+        y: 159,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteFrom[5]), {
+        x: 135,
+        y: 159,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteFrom[6]), {
+        x: 150,
+        y: 159,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteFrom[8]), {
+        x: 99,
+        y: 159,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteFrom[9]), {
+        x: 114,
+        y: 159,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteTo[0]), {
+        x: 171,
+        y: 125,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteTo[1]), {
+        x: 186,
+        y: 125,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteTo[2]), {
+        x: 201,
+        y: 125,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteTo[3]), {
+        x: 215,
+        y: 125,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteTo[5]), {
+        x: 135,
+        y: 125,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteTo[6]), {
+        x: 150,
+        y: 125,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteTo[8]), {
+        x: 99,
+        y: 125,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+      drawText(courierFont.encodeText(userData.postalVoteTo[9]), {
+        x: 114,
+        y: 125,
+        font: COURIER_FONT,
+        size: 12,
+        colorRgb: [0, 0, 0],
+      }),
+    );
+    existingPage2.addContentStreams(pdfDoc.register(newContentStream2));
+
+  }
+
 
 
   // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);

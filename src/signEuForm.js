@@ -31,18 +31,33 @@ function signEuForm(userData) {
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.05;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.05;
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.08;
+  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.08;
+
+  var differentAddressYes = '';
+  var differentAddressNo = 'X';
+  if (userData.differentAddress){
+    differentAddressYes = 'X';
+    differentAddressNo = '';
+  }
+
+  var registeredAtHomeYes = '';
+  var registeredAtHomeNo = 'X';
+  if (userData.registeredAtHome){
+    registeredAtHomeYes = 'X';
+    registeredAtHomeNo = '';
+  }
+
   const newContentStream = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
-      x: 350,
-      y: 105,
+      x: 330,
+      y: 95,
       width: SIGNATURE_PNG_WIDTH,
       height: SIGNATURE_PNG_HEIGHT,
     }),
     drawText(courierFont.encodeText(userData.surname), {
       x: 50,
-      y: 672,
+      y: 676,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
@@ -75,9 +90,44 @@ function signEuForm(userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText('X'), {
+    drawText(courierFont.encodeText(differentAddressNo), {
       x: 212,
       y: 450,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(differentAddressNo), {
+      x: 538,
+      y: 600,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(differentAddressYes), {
+      x: 258,
+      y: 450,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(differentAddressYes), {
+      x: 538,
+      y: 572,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(differentAddressYes), {
+      x: 258,
+      y: 417,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(differentAddressYes), {
+      x: 258,
+      y: 382,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
@@ -98,7 +148,35 @@ function signEuForm(userData) {
     }),
     drawText(courierFont.encodeText(userData.citizenOf), {
       x: 415,
-      y: 677,
+      y: 678,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.firstLineCurrentAddress), {
+      x: 330,
+      y: 520,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.secondLineCurrentAddress), {
+      x: 330,
+      y: 502,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentPostcode), {
+      x: 480,
+      y: 469,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(userData.currentCity), {
+      x: 330,
+      y: 486,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
@@ -106,6 +184,20 @@ function signEuForm(userData) {
     drawText(courierFont.encodeText(userData.homeCountryConstituency), {
       x: 330,
       y: 340,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(registeredAtHomeYes), {
+      x: 350,
+      y: 409,
+      font: COURIER_FONT,
+      size: 12,
+      colorRgb: [0, 0, 0],
+    }),
+    drawText(courierFont.encodeText(registeredAtHomeNo), {
+      x: 391,
+      y: 409,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
@@ -167,8 +259,6 @@ function signEuForm(userData) {
       colorRgb: [0, 0, 0],
     }),
   );
-
-
   
   existingPage.addContentStreams(pdfDoc.register(newContentStream));
 
