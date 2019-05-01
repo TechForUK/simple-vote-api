@@ -5,30 +5,35 @@ const sendEmail = require('./src/sendEmail.js');
 const validation = require('./src/validation.js');
 
 exports.fillAndSignForms = (req, res) => {
-  const { userData } = req.body;
+  res.set('Access-Control-Allow-Origin', 'https://simple.getvoting.org');
 
-  if (validation(userData))
-  {
-    const pdfDocuments = [];
+  if (req.method === 'OPTIONS') {
+    // Send response to OPTIONS requests
+    res.set('Access-Control-Allow-Methods', 'POST');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Max-Age', '3600');
+    res.sendStatus(204);
+  } else {
+    const { userData } = req.body;
 
-    switch(userData.userType) {
-    case 'uk_citizen_in_uk':
-      pdfDocuments.push(signBasicForm(userData));
-      break;
-    case 'eu_citizen_in_uk':
-      pdfDocuments.push(signBasicForm(userData));
-      pdfDocuments.push(signEuForm(userData));
-      break;
+    if (validation(userData)) {
+      const pdfDocuments = [];
+
+      switch(userData.userType) {
+      case 'uk_citizen_in_uk':
+        pdfDocuments.push(signBasicForm(userData));
+        break;
+      case 'eu_citizen_in_uk':
+        pdfDocuments.push(signBasicForm(userData));
+        pdfDocuments.push(signEuForm(userData));
+        break;
+      }
+      if (userData.postalVote){
+        pdfDocuments.push(signPostalForm(userData));
+      }
+      //for testing we are setting toEmail to fromEmail
+      sendEmail(pdfDocuments,userData.email, userData.email, userData.firstName + ' ' + userData.surname);
     }
-    if (userData.postalVote){
-      pdfDocuments.push(signPostalForm(userData));
-    }
-    //for testing we are setting toEmail to fromEmail
-    sendEmail(pdfDocuments,userData.email, userData.email, userData.firstName + ' ' + userData.surname);
-
-  }
-  else {
-    console.log('validation of user Data failed');
   }
 
   res.sendStatus(200);

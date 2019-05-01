@@ -12,10 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
-    "atob": "^2.1.2",
-    "body-parser": "^1.19.0",
     "data-uri-to-buffer": "^2.0.1",
-    "express": "^4.16.4",
     "pdf-lib": "^0.6.1",
     "sendgrid": "^5.2.3"
   },
