@@ -1,6 +1,6 @@
 function validation(userData){
 
-  const lenTextFields = 20;
+  const lenTextFields = 50;
 
   try {      
     if(validEmail(userData.email) == false){
