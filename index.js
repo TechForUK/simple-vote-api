@@ -5,6 +5,8 @@ const sendEmail = require('./src/sendEmail.js');
 const validation = require('./src/validation.js');
 
 exports.fillAndSignForms = (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+
   const { userData } = req.body;
 
   if (validation(userData))
