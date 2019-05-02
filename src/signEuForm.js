@@ -31,8 +31,8 @@ function signEuForm(userData) {
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.08;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.08;
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.25;
+  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.25;
 
   var differentAddressYes = '';
   var differentAddressNo = 'X';
@@ -50,8 +50,8 @@ function signEuForm(userData) {
 
   const newContentStream = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
-      x: 330,
-      y: 95,
+      x: 375,
+      y: 85,
       width: SIGNATURE_PNG_WIDTH,
       height: SIGNATURE_PNG_HEIGHT,
     }),
@@ -259,9 +259,10 @@ function signEuForm(userData) {
       colorRgb: [0, 0, 0],
     }),
   );
-  
+
   existingPage.addContentStreams(pdfDoc.register(newContentStream));
 
+  // For testing:
   // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
   // const outputDir = `${__dirname}/../output`;
   // const filePath = `${outputDir}/signEUForm.pdf`;

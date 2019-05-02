@@ -36,7 +36,6 @@ exports.fillAndSignForms = (req, res) => {
       console.log('Sending email');
       //for testing we are setting toEmail to fromEmail
       sendEmail(pdfDocuments,userData.email, userData.email, userData.firstName + ' ' + userData.surname);
-      console.log('Email sent');
     } else {
       console.log('Validation failed');
     }

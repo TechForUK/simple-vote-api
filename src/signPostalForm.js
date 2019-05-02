@@ -38,12 +38,12 @@ function signBasicForm (userData) {
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.1;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.1;
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.25;
+  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.25;
 
   const newContentStream = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
-      x: 332,
+      x: 360,
       y: 172,
       width: SIGNATURE_PNG_WIDTH,
       height: SIGNATURE_PNG_HEIGHT,
@@ -417,7 +417,7 @@ function signBasicForm (userData) {
   }
 
 
-
+  // For testing:
   // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
   // const outputDir = `${__dirname}/../output`;
   // const filePath = `${outputDir}/signPostalForm.pdf`;

@@ -16,47 +16,38 @@ function sendEmail(files, toEmail, fromEmail, name) {
 
   const msg = {
     to: toEmail,
-    //cc: fromEmail,
     from: fromEmail,
-    subject: 'Please register me for voting in the EU elections',
-    text: 'Hello,\n\nPlease register me for Voting. See attached.\n\nBest regards,\n\n'+name,
-    //html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    subject: 'Please add me to the electoral register',
+    text: 'Hello,\n\nPlease add me to the elecoral register. I\'ve attached all the relevant forms.\n\nBest regards,\n\n'+name,
     attachments: attach,
   };
 
 
 
   sgMail.send(msg)
-    .then(function(output){
-      //console.log(output);
+    .then(function(){
+      console.log('Email sent successfully');
     }).catch(function(e){
+      console.log('Failed to send email');
       console.log(e.message);
     });
 
   const msg2 = {
     to: toEmail,
-    //cc: fromEmail,
-    from: fromEmail,
+    from: 'no-reply@getvoting.org',
     subject: 'Your vote registration email was sent',
-    text: 'Hello,\n\nThanks a lot for using our vote registration app. The following attachements were sent on your behalf\n\nHappy voting,\n\nThe Best for Britain team',
-    //html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    text: 'Hello,\n\nThanks a lot for using our voter registration app. The following documents were sent on your behalf to your local electoral body.\n\nHappy voting,\n\nThe Best for Britain team',
     attachments: attach,
   };
 
   sgMail.send(msg2)
-    .then(function(output){
-      //console.log(output);
+    .then(function(){
+      console.log('Email sent successfully');
     }).catch(function(e){
+      console.log('Failed to send email');
       console.log(e.message);
     });
 
 }
 
 module.exports = sendEmail;
-
-
-
-
-
-
-

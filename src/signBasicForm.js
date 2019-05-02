@@ -38,10 +38,10 @@ function signBasicForm (userData) {
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.09;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.09;
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.16;
+  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.16;
 
-  
+
   var movedHouseYes = '';
   var movedHouseNo = 'X';
   //setup a few tick boxes 'X'
@@ -205,7 +205,7 @@ function signBasicForm (userData) {
   const newContentStream2 = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
       x: 120,
-      y: 105,
+      y: 110,
       width: SIGNATURE_PNG_WIDTH,
       height: SIGNATURE_PNG_HEIGHT,
     }),
@@ -409,7 +409,7 @@ function signBasicForm (userData) {
 
   existingPage2.addContentStreams(pdfDoc.register(newContentStream2));
 
-
+  // For testing:
   // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
   // const outputDir = `${__dirname}/../output`;
   // const filePath = `${outputDir}/signBasicForm.pdf`;
