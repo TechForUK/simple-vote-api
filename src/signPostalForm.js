@@ -38,8 +38,8 @@ function signBasicForm (userData) {
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.25;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.25;
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width / (SignaturePngDims.height / 60);
+  const SIGNATURE_PNG_HEIGHT = 60;
 
   const newContentStream = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {

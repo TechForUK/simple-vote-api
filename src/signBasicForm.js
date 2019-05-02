@@ -38,9 +38,8 @@ function signBasicForm (userData) {
     .addFontDictionary(COURIER_FONT, courierRef)
     .addImageObject(SIGNATURE_PNG, SignaturePngRef);
 
-  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width * 0.16;
-  const SIGNATURE_PNG_HEIGHT = SignaturePngDims.height * 0.16;
-
+  const SIGNATURE_PNG_WIDTH = SignaturePngDims.width / (SignaturePngDims.height / 40);
+  const SIGNATURE_PNG_HEIGHT = 40;
 
   var movedHouseYes = '';
   var movedHouseNo = 'X';
