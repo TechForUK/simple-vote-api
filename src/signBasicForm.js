@@ -209,13 +209,6 @@ function signBasicForm (userData) {
       width: SIGNATURE_PNG_WIDTH,
       height: SIGNATURE_PNG_HEIGHT,
     }),
-    drawText(courierFont.encodeText('X'), {
-      x: 59,
-      y: 781,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
     drawText(courierFont.encodeText(userData.dateOfBirth[0]), {
       x: 138,
       y: 728,
@@ -398,13 +391,13 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText('X'), {
-      x: 475,
-      y: 258,
-      font: COURIER_FONT,
-      size: 12,
-      colorRgb: [0, 0, 0],
-    }),
+    // drawText(courierFont.encodeText('X'), {
+    //   x: 475,
+    //   y: 258,
+    //   font: COURIER_FONT,
+    //   size: 12,
+    //   colorRgb: [0, 0, 0],
+    // }),
     drawText(courierFont.encodeText(userData.previousName), {
       x: 56,
       y: 459,
@@ -415,7 +408,6 @@ function signBasicForm (userData) {
   );
 
   existingPage2.addContentStreams(pdfDoc.register(newContentStream2));
-
 
 
   // const pdfBytes = PDFDocumentWriter.saveToBytes(pdfDoc);
