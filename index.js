@@ -14,7 +14,8 @@ exports.fillAndSignForms = (req, res) => {
     res.set('Access-Control-Max-Age', '3600');
     res.sendStatus(204);
   } else {
-    const { userData } = req.body;
+    const { userData, electoralOfficeEmail } = req.body;
+    console.log(electoralOfficeEmail);
 
     if (validation(userData)) {
       console.log('Validation passed');
