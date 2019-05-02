@@ -14,9 +14,11 @@ exports.fillAndSignForms = (req, res) => {
     res.set('Access-Control-Max-Age', '3600');
     res.sendStatus(204);
   } else {
-    const { userData } = req.body;
+    const { userData, electoralOfficeEmail } = req.body;
+    console.log(electoralOfficeEmail);
 
     if (validation(userData)) {
+      console.log('Validation passed');
       const pdfDocuments = [];
 
       switch(userData.userType) {
@@ -31,8 +33,12 @@ exports.fillAndSignForms = (req, res) => {
       if (userData.postalVote){
         pdfDocuments.push(signPostalForm(userData));
       }
+      console.log('Sending email');
       //for testing we are setting toEmail to fromEmail
       sendEmail(pdfDocuments,userData.email, userData.email, userData.firstName + ' ' + userData.surname);
+      console.log('Email sent');
+    } else {
+      console.log('Validation failed');
     }
   }
 
