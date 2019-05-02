@@ -15,8 +15,6 @@ exports.fillAndSignForms = (req, res) => {
     res.sendStatus(204);
   } else {
     const { userData, electoralOfficeEmail } = req.body;
-    console.log(electoralOfficeEmail);
-
     if (validation(userData)) {
       console.log('Validation passed');
       const pdfDocuments = [];
@@ -35,7 +33,7 @@ exports.fillAndSignForms = (req, res) => {
       }
       console.log('Sending email');
       //for testing we are setting toEmail to fromEmail
-      sendEmail(pdfDocuments,userData.email, userData.email, userData.firstName + ' ' + userData.surname);
+      sendEmail(pdfDocuments, electoralOfficeEmail, userData.email, userData.firstName + ' ' + userData.surname);
     } else {
       console.log('Validation failed');
     }

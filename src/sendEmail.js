@@ -33,7 +33,7 @@ function sendEmail(files, toEmail, fromEmail, name) {
     });
 
   const msg2 = {
-    to: toEmail,
+    to: fromEmail,
     from: 'no-reply@getvoting.org',
     subject: 'Your vote registration email was sent',
     text: 'Hello,\n\nThanks a lot for using our voter registration app. The following documents were sent on your behalf to your local electoral body.\n\nHappy voting,\n\nThe Best for Britain team',
