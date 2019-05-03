@@ -36,7 +36,7 @@ function sendEmail(files, toEmail, fromEmail, name) {
     to: fromEmail,
     from: 'no-reply@getvoting.org',
     subject: 'Your vote registration email was sent',
-    text: 'Hello,\n\nThanks a lot for using our voter registration app. The following documents were sent on your behalf to your local electoral body.\n\nHappy voting,\n\nThe Best for Britain team',
+    text: 'Hello,\n\nThanks a lot for using our voter registration app. The following documents were sent on your behalf to your local electoral body.\nIf you don\'t hear back from your electoral office within a day please forward them these documents manually.\n\nHappy voting,\n\nThe Best for Britain team',
     attachments: attach,
   };
 
