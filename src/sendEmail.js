@@ -38,7 +38,7 @@ function sendEmail(files, toEmail, fromEmail, name) {
     to: fromEmail,
     from: 'no-reply@getvoting.org',
     subject: 'Your vote registration email was sent',
-    text: 'Hello,\n\nThanks a lot for using our voter registration app. The following documents were sent on your behalf to your local electoral body.\nIf you don\'t hear back from your electoral office within a day please forward them these documents manually.\n\nHappy voting,\n\nThe Best for Britain team\n\nPromoted by Best for Britain, the campaign name of UK-EU OPEN POLICY LIMITED registered at International House, 24 Holborn Viaduct, London, EC1A 2BN. Best for Britain is registered with The Electoral Commission.',
+    text: 'Hello,\n\nThanks a lot for using our voter signup app. The following documents were sent on your behalf to your local electoral body.\nIf you don\'t hear back from your electoral office within a day please forward them these documents manually.\n\nHappy voting,\n\nThe Best for Britain team\n\nPromoted by Best for Britain, the campaign name of UK-EU OPEN POLICY LIMITED registered at International House, 24 Holborn Viaduct, London, EC1A 2BN. Best for Britain is registered with The Electoral Commission.',
     attachments: attach,
   };
 
