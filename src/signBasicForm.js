@@ -200,6 +200,7 @@ function signBasicForm (userData) {
 
   //const ninNoSpaces = userData.nin.replace(/ /g,'');
   const ninNoSpaces = userData.nin.replace(/\s+/g, '');
+  console.log(userData.dateOfBirth);
 
   const newContentStream2 = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
@@ -236,28 +237,28 @@ function signBasicForm (userData) {
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.dateOfBirth[5]), {
+    drawText(courierFont.encodeText(userData.dateOfBirth[8]), {
       x: 53,
       y: 728,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.dateOfBirth[6]), {
+    drawText(courierFont.encodeText(userData.dateOfBirth[9]), {
       x: 67,
       y: 728,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.dateOfBirth[8]), {
+    drawText(courierFont.encodeText(userData.dateOfBirth[5]), {
       x: 96,
       y: 728,
       font: COURIER_FONT,
       size: 12,
       colorRgb: [0, 0, 0],
     }),
-    drawText(courierFont.encodeText(userData.dateOfBirth[9]), {
+    drawText(courierFont.encodeText(userData.dateOfBirth[6]), {
       x: 110,
       y: 728,
       font: COURIER_FONT,
