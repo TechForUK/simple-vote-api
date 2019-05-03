@@ -200,7 +200,6 @@ function signBasicForm (userData) {
 
   //const ninNoSpaces = userData.nin.replace(/ /g,'');
   const ninNoSpaces = userData.nin.replace(/\s+/g, '');
-  console.log(userData.dateOfBirth);
 
   const newContentStream2 = pdfDoc.createContentStream(
     drawImage(SIGNATURE_PNG, {
