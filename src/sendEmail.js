@@ -17,6 +17,7 @@ function sendEmail(files, toEmail, fromEmail, name) {
   const msg = {
     to: toEmail,
     from: 'register@simple.getvoting.org',
+    reply_to: fromEmail,
     cc: fromEmail,
     subject: 'Request to be added to the electoral register',
     text: `Hello,\n\nWe're  forwarding you a request to add ${name} to the elecotral register. All their relevant forms have been attached. \n\nPromoted by Best for Britain, the campaign name of UK-EU OPEN POLICY LIMITED registered at International House, 24 Holborn Viaduct, London, EC1A 2BN. Best for Britain is registered with The Electoral Commission.`,
